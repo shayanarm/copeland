@@ -87,14 +87,15 @@ export default function Content() {
             const response = await fetch(`/api/weather-info?${query}`, {
               method: "GET"
             });
-            const data = await response.json();
-            result = data as Result;
+            if (response.status === 200) {
+              const data = await response.json();
+              result = data as Result;
+            }
           }
         } catch (error) {
           console.error("Error fetching data:", error);
           result = null;
         } finally {
-          console.log(result);
           setState(s => ({ ...s, searching: false, result }))
         }
       })();
@@ -115,7 +116,7 @@ export default function Content() {
       >
         <TextField
           id="standard-basic"
-          label="Search for city, zip code, or coordinates"
+          label="Search using city, region or zip code"
           variant="standard" sx={{ flexGrow: 1 }}
           value={typeof state.search === "string" ? state.search : ''}
           onChange={(e) => setState(s => ({ ...s, search: e.target.value }))} />
@@ -167,8 +168,6 @@ export default function Content() {
                 </Typography>
               </Grid>
             </Grid>
-
-
           </CardContent>
         </Card>
       </>}

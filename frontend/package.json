@@ -1,6 +1,6 @@
 {
-  "name": "iranism",
-  "version": "0.1.0",
+  "name": "frontend",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "BACKEND_URL=http://host.docker.internal:3001 next dev",

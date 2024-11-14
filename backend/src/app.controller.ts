@@ -12,7 +12,7 @@ export class AppController {
     @Query('lng') lng: string | undefined | null
   ): Promise<any> {
     let query = undefined;
-    
+
     const latitude = lat ? parseFloat(lat) : undefined;
     const longitude = lng ? parseFloat(lng) : undefined;
 
@@ -25,7 +25,6 @@ export class AppController {
     if (q) {
       query = q;
     } else if (typeof lat === "number" && typeof lng === "number") {
-
       query = { lat, lng };
     }
 
