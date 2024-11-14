@@ -9,13 +9,17 @@ export class AppService {
   constructor() {
     this.apiKey = process.env.OPEN_WEATHER_MAP_KEY;
   }
-  async getWeatherInfo(query: string): Promise<any> {
+  async getWeatherInfo(query: string | { lat: number, lng: number }): Promise<any> {
+    const extionsion =
+      typeof query === 'string'
+        ? { q: query }
+        : { lat: query.lat, lon: query.lng };
     try {
       const response = await axios.get(this.apiUrl, {
         params: {
-          q: query,
           appid: this.apiKey,
           units: 'metric',
+          ...extionsion
         },
       });
       return response.data;
