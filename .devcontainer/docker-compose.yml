@@ -15,5 +15,3 @@ services:
       - SYS_PTRACE
     stdin_open: true
     tty: true
-    # environment:
-    #   - DATABASE_URL=postgres://devuser:devpassword@localhost:5432/v2
