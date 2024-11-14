@@ -28,8 +28,6 @@ export class AppController {
       query = { lat, lng };
     }
 
-    console.log(query);
-
     if (!query) {
       throw new Error('Either the `q` parameter, or both the `lat` and `lng` parameter is required');
     }

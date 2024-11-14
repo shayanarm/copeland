@@ -2,7 +2,7 @@
 import React from "react";
 import { Breakpoint, Container, Paper, useMediaQuery, useTheme } from "@mui/material";
 
-const component: (props: { children: React.ReactNode, maxWidth?: Breakpoint | undefined}) => React.JSX.Element = ({ children, maxWidth }) => {    
+export default function Page(props: { children: React.ReactNode, maxWidth?: Breakpoint | undefined }): React.JSX.Element {
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
     return (<Paper
@@ -19,10 +19,8 @@ const component: (props: { children: React.ReactNode, maxWidth?: Breakpoint | un
         })}
         elevation={matchesSM ? 0 : 3}
         variant="elevation"
-        style={{ maxWidth: theme.breakpoints.values[maxWidth || "md"] }}
+        style={{ maxWidth: theme.breakpoints.values[props.maxWidth || "md"] }}
         component={Container}>
-        {children}
+        {props.children}
     </Paper>);
 };
-
-export default component

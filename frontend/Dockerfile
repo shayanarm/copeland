@@ -7,4 +7,13 @@ RUN corepack enable
 
 RUN pnpm setup
 
-USER root
+WORKDIR frontend
+COPY package.json package.json
+
+RUN pnpm install
+
+COPY . .
+
+RUN pnpm build
+
+CMD ["pnpm", "start"]
