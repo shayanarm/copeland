@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:      
+  development:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    volumes:
+      - ../:/workspace/
+    network_mode: host
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_PTRACE
+    stdin_open: true
+    tty: true
+    # environment:
+    #   - DATABASE_URL=postgres://devuser:devpassword@localhost:5432/v2
